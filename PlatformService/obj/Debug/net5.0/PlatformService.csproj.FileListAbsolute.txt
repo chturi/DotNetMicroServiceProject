@@ -63,3 +63,4 @@ D:\repos\Microservices\s4\e3\PlatformService\obj\Debug\net5.0\ref\PlatformServic
 D:\repos\Microservices\s4\e3\PlatformService\obj\Debug\net5.0\PlatformService.pdb
 D:\repos\Microservices\s4\e3\PlatformService\obj\Debug\net5.0\PlatformService.genruntimeconfig.cache
 D:\repos\Microservices\s4\e3\PlatformService\bin\Debug\net5.0\appsettings.Production.json
+D:\repos\Microservices\s4\e3\PlatformService\bin\Debug\net5.0\RabbitMQ.Client.dll
