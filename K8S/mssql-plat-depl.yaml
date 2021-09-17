@@ -22,11 +22,8 @@ spec:
             value: "Express"
           - name: ACCEPT_EULA
             value: "Y"
-          - name: SA_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: mssql
-                key: SA_PASSWORD
+          - name: MSSQL_SA_PASSWORD
+            value: "Pa55w0rd2019!"
           volumeMounts:
           - mountPath: /var/opt/mssql/data
             name: mssqldb
@@ -61,6 +58,7 @@ spec:
   - protocol: TCP
     port: 1433
     targetPort: 1433
+
 
 
 
