@@ -27,7 +27,7 @@ namespace CommandsService.Controllers
 
             Console.WriteLine($"--> Hit GetCommandsForPlatform: {platformId}");
 
-            if (!_repository.PlatformExist(platformId))
+            if (!_repository.PlatformExists(platformId))
             {
                 return NotFound();
             }
@@ -44,7 +44,7 @@ namespace CommandsService.Controllers
 
             Console.WriteLine($"--> Hit GetCommandsForPlatform: {platformId} / commandId {commandId}");
 
-            if (!_repository.PlatformExist(platformId))
+            if (!_repository.PlatformExists(platformId))
             {
                 return NotFound();
             }
@@ -66,7 +66,7 @@ namespace CommandsService.Controllers
 
             Console.WriteLine($"--> Hit CreateCommandsForPlatform: {platformId}");
 
-            if (!_repository.PlatformExist(platformId))
+            if (!_repository.PlatformExists(platformId))
             {
                 return NotFound();
             }

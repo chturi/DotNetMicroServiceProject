@@ -78,6 +78,7 @@ namespace PlatformService.AsyncDataServices
                 _channel.Close();
                 _connection.Close();
             }
+
         }
 
         private void RabbitMQ_ConnectionShutDown(object sender, ShutdownEventArgs e)
