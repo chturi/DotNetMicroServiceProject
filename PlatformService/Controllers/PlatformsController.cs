@@ -93,6 +93,25 @@ namespace PlatformService.Controllers
             return CreatedAtRoute(nameof(GetPlatformById), new { id = platformReadDto.Id }, platformReadDto);
         }
 
+        [HttpPut("{platformId}")]
+        public async Task<ActionResult<PlatformReadDto>> UpdatePlatform(int platformId, [FromBody] PlatformUpdateDto updatedPlatform)
+        {
+            Console.WriteLine($"--> Updating Platform: {platformId}");
+
+            var platformModel = _mapper.Map<Platform>(updatedPlatform);
+            platformModel.Id = platformId;
+
+            await _repository.UpdatePlatform(platformModel);
+            _repository.SaveChanges();
+
+            var platformReadDto = _mapper.Map<PlatformReadDto>(platformModel);
+
+            return CreatedAtRoute(nameof(GetPlatformById), new { id = platformReadDto.Id }, platformReadDto);
+
+        }
+
+
+
 
     }
 }

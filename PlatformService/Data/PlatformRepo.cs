@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using PlatformService.Models;
 
 namespace PlatformService.Data
@@ -39,6 +41,23 @@ namespace PlatformService.Data
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public async Task<Platform> UpdatePlatform(Platform updatedPlat)
+        {
+            var platform = await _context.Platforms.FirstOrDefaultAsync(p => p.Id == updatedPlat.Id);
+
+            if (platform == null)
+            {
+                throw new ArgumentNullException(nameof(platform));
+            }
+
+            platform.Name = updatedPlat.Name;
+            platform.Cost = updatedPlat.Cost;
+            platform.Publisher = updatedPlat.Publisher;
+
+            return platform;
+
         }
     }
 }

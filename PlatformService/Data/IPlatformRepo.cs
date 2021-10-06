@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using PlatformService.Models;
 
 namespace PlatformService.Data
@@ -10,6 +11,7 @@ namespace PlatformService.Data
         IEnumerable<Platform> GetAllPlatforms();
         Platform GetPlatformById(int id);
         void CreatPlatform(Platform plat);
+        Task<Platform> UpdatePlatform(Platform plat);
 
     }
 }
