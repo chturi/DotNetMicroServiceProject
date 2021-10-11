@@ -43,6 +43,12 @@ namespace PlatformService.Data
             return (_context.SaveChanges() >= 0);
         }
 
+        public async Task SaveChangesAsync()
+        {
+            var saveTask = await _context.SaveChangesAsync();
+            Console.WriteLine(saveTask);
+        }
+
         public async Task<Platform> UpdatePlatform(Platform updatedPlat)
         {
             var platform = await _context.Platforms.FirstOrDefaultAsync(p => p.Id == updatedPlat.Id);

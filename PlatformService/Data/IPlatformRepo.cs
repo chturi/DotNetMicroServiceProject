@@ -12,6 +12,7 @@ namespace PlatformService.Data
         Platform GetPlatformById(int id);
         void CreatPlatform(Platform plat);
         Task<Platform> UpdatePlatform(Platform plat);
+        Task SaveChangesAsync();
 
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PlatformService.AsyncDataServices;
 using PlatformService.Data;
 using PlatformService.Dtos;
@@ -101,9 +102,16 @@ namespace PlatformService.Controllers
             var platformModel = _mapper.Map<Platform>(updatedPlatform);
             platformModel.Id = platformId;
 
-            await _repository.UpdatePlatform(platformModel);
-            _repository.SaveChanges();
+            try
+            {
+                await _repository.UpdatePlatform(platformModel);
+                await _repository.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return Conflict($"Conlict occured when trying to update entity: {ex.Message}");
 
+            }
             var platformReadDto = _mapper.Map<PlatformReadDto>(platformModel);
 
             return CreatedAtRoute(nameof(GetPlatformById), new { id = platformReadDto.Id }, platformReadDto);

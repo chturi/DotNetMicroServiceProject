@@ -17,6 +17,8 @@ namespace PlatformService.Models
         [Required]
         public string Cost { get; set; }
 
+        [Timestamp]
+        public byte[] Revision { get; set; }
 
 
     }
