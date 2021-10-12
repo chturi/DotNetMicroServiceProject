@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -104,7 +105,13 @@ namespace PlatformService.Controllers
 
             try
             {
-                await _repository.UpdatePlatform(platformModel);
+                var platform = await _repository.UpdatePlatform(platformModel);
+
+                if (!_repository.IsModified(platform))
+                {
+                    return StatusCode(304);
+                }
+
                 await _repository.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException ex)

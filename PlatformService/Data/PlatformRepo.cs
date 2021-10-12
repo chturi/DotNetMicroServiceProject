@@ -43,6 +43,13 @@ namespace PlatformService.Data
             return (_context.SaveChanges() >= 0);
         }
 
+        public bool IsModified(Platform platform)
+        {
+            var state = _context.Entry(platform).State;
+            return _context.Entry(platform).State == EntityState.Modified;
+
+        }
+
         public async Task SaveChangesAsync()
         {
             var saveTask = await _context.SaveChangesAsync();
@@ -57,6 +64,8 @@ namespace PlatformService.Data
             {
                 throw new ArgumentNullException(nameof(platform));
             }
+
+            _context.Entry(platform).Property(p => p.Revision).OriginalValue = updatedPlat.Revision;
 
             platform.Name = updatedPlat.Name;
             platform.Cost = updatedPlat.Cost;

@@ -8,6 +8,7 @@ namespace PlatformService.Data
     public interface IPlatformRepo
     {
         bool SaveChanges();
+        bool IsModified(Platform platform);
         IEnumerable<Platform> GetAllPlatforms();
         Platform GetPlatformById(int id);
         void CreatPlatform(Platform plat);
